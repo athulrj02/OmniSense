@@ -1,0 +1,75 @@
+OmniSense
+---------
+
+## Abstract
+
+This project involves developing a prototype for a Smart Blind Stick that assists visually impaired individuals by identifying obstacles and alerting the user through a buzzer. The system utilizes an Arduino Uno microcontroller, an ultrasonic sensor to detect obstacles, and a buzzer to signal the presence of nearby objects. The device is powered by a 9V battery. Future enhancements include integrating water detection capabilities, adding a Bluetooth device for assistance, and incorporating an SOS feature.
+
+## Components
+
+- **Arduino Uno**: The microcontroller that controls the system.
+- **Ultrasonic Sensor (HC-SR04)**: Measures the distance to obstacles.
+- **Buzzer**: Alerts the user when an obstacle is detected.
+- **9V Battery**: Powers the system.
+
+## Circuit Connections
+
+- **Trigger Pin of Ultrasonic Sensor**: Connected to Arduino digital pin 4.
+- **Echo Pin of Ultrasonic Sensor**: Connected to Arduino digital pin 5.
+- **Buzzer**: Connected to Arduino digital pin 3.
+
+## Code Explanation
+
+The provided code sets up the necessary pins for the ultrasonic sensor and the buzzer. The main functionality of the code involves continuously measuring the distance to any obstacle and triggering the buzzer if an object is detected within a 30 cm range.
+
+```cpp
+int trigpin = 4;
+int echopin = 5;
+int buzzer = 3;
+long duration;
+int distance;
+
+void setup() {
+  pinMode(3, OUTPUT);
+  pinMode(trigpin, OUTPUT);
+  pinMode(echopin, INPUT);
+  Serial.begin(9600);  // Initialize serial communication
+}
+
+void loop() {
+  digitalWrite(trigpin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigpin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigpin, LOW);
+
+  duration = pulseIn(echopin, HIGH);
+  distance = duration * 0.034 / 2;
+  Serial.print("Distance: ");
+  Serial.println(distance);
+
+  if (distance < 30) {
+    digitalWrite(3, HIGH);
+  } else {
+    digitalWrite(3, LOW);
+  }
+}
+```
+
+### Code Breakdown
+
+1. **Pin Configuration**: The ultrasonic sensor and buzzer pins are defined and configured as input or output as required.
+2. **Trigger Pulse**: A short pulse is sent to the trigger pin of the ultrasonic sensor to initiate a measurement.
+3. **Echo Response**: The duration of the echo pulse is measured, which corresponds to the time taken for the pulse to travel to the obstacle and back.
+4. **Distance Calculation**: The distance to the obstacle is calculated based on the duration of the echo pulse.
+5. **Obstacle Detection**: If the detected distance is less than 30 cm, the buzzer is activated; otherwise, it is turned off.
+
+## Future Enhancements
+
+- **Water Detection**: Integrate a water sensor to alert the user of water puddles or wet surfaces.
+- **Bluetooth Assistance**: Add a Bluetooth module to enable remote assistance and communication.
+- **SOS Feature**: Incorporate an SOS button to send an emergency alert to a predefined contact or service.
+
+## Conclusion
+
+This Smart Blind Stick project provides a foundational assistive technology for visually impaired individuals by enabling obstacle detection and alerting through a buzzer. With planned future enhancements, this device has the potential to offer even more comprehensive support, improving the safety and independence of its users.
