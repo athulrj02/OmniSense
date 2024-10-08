@@ -1,0 +1,32 @@
+# OmniSense - Assisted Blind Stick
+
+**OmniSense** is an IoT prototype designed to assist visually impaired individuals by detecting obstacles in their path and alerting them with a buzzer. The project aims to enhance independence and safety for the visually impaired by integrating simple yet effective technology.
+
+## Features
+
+- **Obstacle Detection**: The stick uses an ultrasonic sensor to measure the distance between the user and obstacles. If an object is detected within 30 cm, a buzzer will sound to alert the user.
+- **Real-time Feedback**: Distance to the nearest obstacle is displayed through serial communication, making it easy to monitor and debug.
+
+### Future Enhancements
+We plan to expand OmniSense with the following features:
+- **Bluetooth Prompt**: Allows connection to a smartphone for additional feedback or assistance.
+- **Water Detection**: Alerts the user when water is present on the ground.
+- **GPS Monitoring**: Provides real-time location tracking for added security.
+- **SOS and Threat Alerts**: Emergency notifications and alerts when dangerous situations are detected.
+
+## Hardware Requirements
+
+- Arduino UNO
+- Ultrasonic Sensor (HC-SR04)
+- Buzzer
+- Battery
+- Jumper wires and breadboard
+
+
+## Setup
+
+1. Connect the **trigpin** of the ultrasonic sensor to pin 4 and the **echopin** to pin 5 on the Arduino UNO.
+2. Attach the **buzzer** to pin 3.
+3. Use a battery to power the Arduino and components.
+4. Upload the code to your Arduino using the Arduino IDE.
+5. Open the Serial Monitor to observe real-time distance measurements.
